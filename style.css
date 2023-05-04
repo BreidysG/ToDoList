@@ -65,3 +65,37 @@ body {
 
 /*Section Task*/
 
+.section-task h3{
+    color: var(--white);
+}
+.section-task ul {
+    padding: 0;
+}
+.section-task li {
+    display: flex;
+    background:linear-gradient( to bottom, var(--blue-dark), var(--green));
+    color: var(--white);
+    border-radius: 15px;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.section-task span {
+    font-size: 35px;
+}
+
+.section-task span:hover{
+    cursor: pointer;
+    color: var(--blue-light);
+}
+
+.section-task>ul p{
+    font-size: 1.2rem;
+}
+
+.line-through {
+    color: var(--blue-light);
+    text-decoration: line-through;
+}
