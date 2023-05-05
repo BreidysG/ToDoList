@@ -1,3 +1,4 @@
+
 :root {
     --white: #fafafb;
     --purple: #9a67ea;
@@ -95,7 +96,7 @@ body {
     font-size: 1.2rem;
 }
 
-.line-through {
+.line-through, .check {
     color: var(--blue-light);
     text-decoration: line-through;
 }
