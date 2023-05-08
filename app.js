@@ -5,6 +5,11 @@ const buttonEnter = document.querySelector("#enter");
 const lineThrough = "line-through";
 const check = "check";
 let id = 0;
+const LIST = [];
+
+/*DATE FROM NAVIGATOR*/ 
+const DATE = new Date();
+date.innerHTML = DATE.toLocaleDateString("en", {weekday: "long", month: "short", day: "numeric" });
 
 
 /*Function add task*/
@@ -25,9 +30,17 @@ buttonEnter.addEventListener("click", ()=>{
     const task = input.value;
     if(task){
         addTask(task, id, false, false);
+        LIST.push({
+            name: task,
+            id: id,
+            complete: false,
+            delete: false,
+        });
+        
     }
     input.value= "";
     id ++; 
+    
 });
 
 document.addEventListener("keyup", function(event){
@@ -35,6 +48,12 @@ document.addEventListener("keyup", function(event){
         const task = input.value;
         if(task){
             addTask(task, id, false, false);
+            LIST.push({
+                name: task,
+                id: id,
+                complete: false,
+                delete: false,
+            });
         }
         input.value= "";
         id ++;
@@ -57,4 +76,12 @@ list.addEventListener("click", function(event){
 function taskComplete(element){
     element.classList.toggle(check); 
     element.parentNode.querySelector(".text").classList.toggle(lineThrough);
+    LIST[element.id].complete = LIST[element.id].complete ? false: true;
+}
+
+/*DELETE */
+
+function taskDelete(element){
+    element.parentNode.parentNode.removeChild(element.parentNode);
+    LIST[element.id].delete = true;
 }
