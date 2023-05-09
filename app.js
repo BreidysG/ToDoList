@@ -95,13 +95,13 @@ let data = localStorage.getItem("TODO");
 if(data){
     LIST = JSON.parse(data);
     id = LIST.length;
-    cargarLista(LIST);
+    loadList(LIST);
 } else {
     LIST= [];
     id = 0
 }
 
-function cargarLista(DATA){
+function loadList(DATA){
     DATA.forEach(function(i) {
         addTask(i.name, i.id, i.complete, i.delete);
     });
