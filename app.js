@@ -4,8 +4,8 @@ const input = document.querySelector("#input");
 const buttonEnter = document.querySelector("#enter");
 const lineThrough = "line-through";
 const check = "check";
-let id = 0;
-const LIST = [];
+let id;
+let LIST ;
 
 /*DATE FROM NAVIGATOR*/ 
 const DATE = new Date();
@@ -38,6 +38,7 @@ buttonEnter.addEventListener("click", ()=>{
         });
         
     }
+    localStorage.setItem("TODO",JSON.stringify(LIST));
     input.value= "";
     id ++; 
     
@@ -55,6 +56,7 @@ document.addEventListener("keyup", function(event){
                 delete: false,
             });
         }
+        localStorage.setItem("TODO",JSON.stringify(LIST));
         input.value= "";
         id ++;
     }
@@ -69,6 +71,7 @@ list.addEventListener("click", function(event){
     }else if(elementData === "delete"){
         taskDelete(element);
     }
+    localStorage.setItem("TODO",JSON.stringify(LIST));
 })
 
 /*COMPLETE*/
@@ -85,3 +88,22 @@ function taskDelete(element){
     element.parentNode.parentNode.removeChild(element.parentNode);
     LIST[element.id].delete = true;
 }
+
+/**LOCALSTORAGE GET ITEM */
+
+let data = localStorage.getItem("TODO");
+if(data){
+    LIST = JSON.parse(data);
+    id = LIST.length;
+    cargarLista(LIST);
+} else {
+    LIST= [];
+    id = 0
+}
+
+function cargarLista(DATA){
+    DATA.forEach(function(i) {
+        addTask(i.name, i.id, i.complete, i.delete);
+    });
+}
+
